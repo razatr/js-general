@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <body>
 
   <ul>
@@ -40,8 +41,22 @@
   </ul>
 
   <script>
-    // ... ваш код ...
+    "use strict"
+
+    function countOfLi(elem){
+      return elem.querySelectorAll('li').length;
+    }
+
+    let allLi = document.querySelectorAll('li');
+    for(let li of allLi){
+      let count;
+      count = countOfLi(li);
+      if(count !== 0){
+        li.firstChild.data += '[' + count + ']';
+      }
+    }
   </script>
 
 </body>
+
 </html>
