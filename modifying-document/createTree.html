@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id = "container">
+    </div>
+    <script>
+        let data = {
+            "Рыбы": {
+                "форель": {},
+                "лосось": {}
+            },
+
+            "Деревья": {
+                "Огромные": {
+                    "секвойя": {},
+                    "дуб": {}
+                },
+                "Цветковые": {
+                    "яблоня": {},
+                    "магнолия": {}
+                }
+            }
+        };
+
+        function isEmpty(obj){
+            for(let prop in obj){
+                return false;
+            }
+            return true;
+        }
+
+        function createTreeText(obj){
+            let resultInHtml= '<ul> \n';
+            for(let listElem in obj){
+                resultInHtml += '<li>' + listElem + '</li> \n';
+                if(!isEmpty(obj[listElem])){
+                    resultInHtml += createTreeText(obj[listElem])
+                }
+            }
+            resultInHtml += '</ul>\n';
+            return resultInHtml;
+        }
+
+        function createTree1(elemId, treeObj){
+            elemId.innerHTML = createTreeText(treeObj);
+        }
+
+        createTree1(container, data); // создаёт дерево в контейнере
+    </script>
+</body>
+
+</html>
