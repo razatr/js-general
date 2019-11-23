@@ -1,0 +1,17 @@
+.hour {
+    color: red;
+}
+
+.min {
+    color: green;
+}
+
+.sec {
+    color: blue;
+}
+
+.hour,
+.min,
+.sec {
+    font-size: 35px;
+}
