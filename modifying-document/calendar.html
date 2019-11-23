@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #E6E6E6;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="calendar"></div>
+
+    <script>
+
+        function createCalendar(elem, year, month) {
+            let day = new Date(year, month - 1);
+            let dayOfWeek = (day.getDay() + 6) % 7 + 1;
+            let htmlCode = '<table>\n';
+            htmlCode += '<tr>\n<th>Пн</th>\n<th>Вт</th>\n<th>Ср</th>\n<th>Чт</th>\n<th>Пт</th>\n<th>Сб</th>\n<th>Вс</th>\n</tr>\n<tr>';
+            for (let i = 0; i < dayOfWeek - 1; i++) {
+                htmlCode += '<td></td>';
+            }
+            while (day.getMonth() !== month) {
+                htmlCode += '<td>' + day.getDate() + '</td>';
+                if (dayOfWeek === 7) {
+                    htmlCode += '</tr>\n<tr>';
+                    dayOfWeek = 0;
+                }
+                dayOfWeek++;
+                day.setDate(day.getDate() + 1);
+            }
+            if (dayOfWeek != 1)
+                for (let i = 0; i <= (7 - dayOfWeek); i++) {
+                    htmlCode += '<td></td>';
+                }
+            htmlCode += '\n</table>'
+            elem.innerHTML = htmlCode;
+        }
+
+        createCalendar(calendar, 2019, 9);
+    </script>
+
+</body>
+
+</html>
