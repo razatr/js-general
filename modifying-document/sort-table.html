@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <table id="table">
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Smith</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Pete</td>
+            <td>Brown</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>Ann</td>
+            <td>Lee</td>
+            <td>5</td>
+        </tr>
+    </table>
+
+    <script>
+        let allStringsDom = document.querySelectorAll('tr');
+        let allStrings = Array.from(allStringsDom);
+        let firstColumn = [];
+
+        allStrings.shift();
+
+        for (let string of allStrings) {
+            firstColumn.push(string.firstElementChild.textContent);
+        }
+
+        firstColumn.sort();
+
+        for (let i = 0; i < allStrings.length; i++) {
+            allStrings[i].firstElementChild.textContent = firstColumn[i];
+        }
+    </script>
+
+</body>
+
+</html>
