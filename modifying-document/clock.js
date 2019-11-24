@@ -26,9 +26,11 @@ function setTime() {
 let timer;
 
 function clockStart() {
+    setTime();
     timer = setInterval(setTime, 1000);
 }
 
 function clockStop() {
     clearInterval(timer);
+    timer = null;
 }
