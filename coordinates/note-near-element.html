@@ -39,10 +39,11 @@
         function positionAt(anchor, position, elem) {
             let coords = anchor.getBoundingClientRect();
             let sizeOfElem = elem.getBoundingClientRect();
-            let positionX = coords.left;
 
             let elemWidth = sizeOfElem.width;
             let elemHeigth = sizeOfElem.height;
+
+            let positionX = coords.left;
             
             if(position === "right"){
                 positionX = coords.right;
