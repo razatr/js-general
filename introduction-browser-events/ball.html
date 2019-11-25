@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        #field {
+            width: 200px;
+            height: 150px;
+            border: 10px solid black;
+            background-color: #00FF00;
+            overflow: hidden;
+        }
+
+        #field {
+            width: 200px;
+            height: 150px;
+            position: relative;
+        }
+
+        #ball {
+            position: absolute;
+            left: 0;
+            /* по отношению к ближайшему расположенному предку (поле) */
+            top: 0;
+            transition: 1s all;
+            /* CSS-анимация для значений left/top делает передвижение мяча плавным */
+        }
+    </style>
+</head>
+
+<body style="height:2000px">
+
+    Нажмите на поле для перемещения мяча.
+    <br> Мяч не должен выходить за границы поля.
+
+
+    <div id="field">
+        <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script>
+        let ball = document.querySelector('img#ball');
+        let field = document.querySelector('div#field');
+
+        let fieldSize = field.getBoundingClientRect();
+
+        let ballHeight = ball.clientHeight;
+        let ballWidth = ball.clientWidth;
+
+        ballHeight = 40;
+        ballWidth = 40;
+
+        let fieldInternalBorderLeft = fieldSize.left + field.clientLeft;
+        let fieldInternalBorderTop = fieldSize.top + field.clientTop;
+        let fieldInternalBorderRight = fieldSize.left + field.clientLeft + field.clientWidth;
+        let fieldInternalBorderBottom = fieldSize.top + field.clientTop + field.clientHeight;
+
+        field.onclick = function(){
+            let coordX = event.clientX, coordY = event.clientY;
+            if(coordX > fieldInternalBorderRight - ballWidth / 2){
+                coordX = fieldInternalBorderRight - ballWidth / 2;
+            }
+            if(coordX < fieldInternalBorderLeft + ballWidth / 2){
+                coordX = fieldInternalBorderLeft + ballWidth / 2;
+            }
+
+            if(coordY > fieldInternalBorderBottom - ballHeight / 2){
+                coordY = fieldInternalBorderBottom - ballHeight / 2;
+            }
+            if(coordY < fieldInternalBorderTop + ballHeight / 2){
+                coordY = fieldInternalBorderTop + ballHeight / 2;
+            }
+
+            ball.style.left = coordX - fieldInternalBorderLeft - ballWidth / 2 + 'px';
+            ball.style.top = coordY - fieldInternalBorderTop - ballHeight / 2 + 'px';
+        }
+    </script>
+</body>
+
+</html>
