@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="list.css">
+</head>
+
+<body>
+
+    <div id = "title">▶ Сладости (нажми меня)!</div>
+    <ul style = "display: none;">
+        <li>Пирожное</li>
+        <li>Пончик</li>
+        <li>Мёд</li>
+    </ul>
+
+    <script>
+        "use strict"
+        let ul = document.querySelector('ul');
+        let title = document.querySelector('div#title');
+
+        function openList(ul){
+            if(ul.style.display === 'none'){
+                return false;
+            }
+            return true;
+        }
+        title.onclick = function(){
+            if(openList(ul)){
+                ul.style.display = 'none';
+                title.textContent = '▶ Сладости (нажми меня)!';
+            }
+            else{
+                ul.style.display = '';
+                title.textContent = '▼ Сладости (нажми меня)!';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
